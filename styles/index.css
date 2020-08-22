@@ -6,6 +6,9 @@ font-family: 'Poiret One', cursive;
 font-family: 'Press Start 2P', cursive;
 font-family: 'Raleway Dots', cursive;
 */
+*{
+    scroll-snap-type: y mandatory;
+}
 *::-webkit-scrollbar{
     display: none;
     -ms-overflow-style: none;
@@ -13,54 +16,76 @@ font-family: 'Raleway Dots', cursive;
 }
 p,h1,h2,h3{
     margin: 0;
+    color: white;
+}
+body{
+    height: 100vh;
+    width: 100%;
 }
 @keyframes leftTextPop{
     from{
         letter-spacing: 50px;
-        left: -200%;
+        transform: translateX(100vw);
     }to{
         letter-spacing: 0px;
-        left: 10%;
+        transform: translateX(0vw);
     }
 }
 @keyframes rightTextPop{
     from{
         letter-spacing: 50px;
-        left: 200%;
+        transform: translateX(-100vw);
     }to{
         letter-spacing: 0px;
-        left: 10%;
+        transform: translateX(0vw);
     }
 }
 @keyframes downFadeTextPop{
-    0%{
+    from{
         opacity: 0%;
-        background-color: #ffffff;
-        top: 100vh;
+        transform: translateY(0px);
     }
     50%{
         opacity: 50%;
-        background-color: #ffffff;
-        top: 70vh;
+        transform: translateY(-30px);
+    }
+    to{
+        opacity: 100%;
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes arrowJump{
+    0%{
+        transform: translateY(0px);
     }
     100%{
-        opacity: 100%;
-        background-color: #ffffff;
-        top: 70vh;
+        transform: translateY(-8px);
+    }
+}
+@keyframes botRipple{
+    0%{
+        transform: translateY(0px);
+    }
+    100%{
+        transform: translateY(2px);
     }
 }
 .contentTile{
+    scroll-snap-align: start;
+    position: relative;
     width: 100%;
     height: 100vh;
     background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
 #nothingHere{
     position: absolute;
-    top: 10vh;
-    width: 100%;
-    height: 100%;
-    font-size: 5rem;
+    top: 5%;
+    left: 5%;
+    width: 50%;
+    font-size: 6vh;
     white-space: nowrap;
 }
 #nothingHere h1{
@@ -72,48 +97,47 @@ p,h1,h2,h3{
     font-style: italic;
 }
 #nothingHere1{
-    left: -200%;
-    position: relative;
     animation-name: leftTextPop;
     animation-duration: 2s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: backwards;
     animation-iteration-count: 1;
 }
 #nothingHere2{
-    left: -200%;
-    position: relative;
     animation-name: rightTextPop;
     animation-duration: 2s;
     animation-delay: 1s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: backwards;
     animation-iteration-count: 1;
 }
 #nothingHere3{
-    left: -200%;
-    position: relative;
     animation-name: leftTextPop;
     animation-duration: 2s;
     animation-delay: 2.8s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: backwards;
     animation-iteration-count: 1;
 }
 #clickToLeave{
     position: absolute;
+    top: calc(90% - 100px);
+    left: 5%;
+    width: 300px;
+    height: 100px;
     background-color: #ffffff;
     opacity: 0%;
     border-radius: 2px;
-    padding: 25px;
     font-family: 'Merriweather', serif;
     font-weight: 200;
     font-style: italic;
-    width: 20%;
-    top: 80vh;
-    left: 10%;
     animation-name: downFadeTextPop;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-delay: 4s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+#clickToLeave p{
+    color: #000000;
+    padding: 20px;
 }
 #dontScroll{
     position: absolute;
@@ -121,9 +145,46 @@ p,h1,h2,h3{
     left: 50%;
     width: 30px;
 }
-.arrComp{
+#dontScroll{
+    overflow: visible;
+    opacity: 0%;
+    animation-name: downFadeTextPop;
+    animation-duration: 0.5s;
+    animation-delay: 4.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+
+}
+#arrow{
     position: relative;
+    top: 13px;
+    animation-name: arrowJump;
+    animation-duration: 1s;
+    animation-delay: 5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
 }
 #arrowBot{
     position: relative;
+    animation-name: botRipple;
+    animation-duration: 1s;
+    animation-delay: 5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+}
+#pDontScroll{
+    font-family: 'Merriweather', serif;
+    font-weight: 200;
+    font-style: italic;
+    white-space: nowrap;
+    transform: translateX(-50px);
+}
+#warningSvg{
+    position: relative;
+    left: 5vh;
+    top: 2vw;
+    height: 80%;
 }
