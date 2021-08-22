@@ -1,13 +1,7 @@
-/*font-family: 'Amatic SC', cursive;
-font-family: 'Londrina Outline', cursive;
-font-family: 'Merriweather', serif;
-font-family: 'Monoton', cursive;
-font-family: 'Poiret One', cursive;
-font-family: 'Press Start 2P', cursive;
-font-family: 'Raleway Dots', cursive;
-*/
 *{
     scroll-snap-type: y mandatory;
+    margin: 0;
+    padding: 0;
 }
 *::-webkit-scrollbar{
     display: none;
@@ -15,12 +9,20 @@ font-family: 'Raleway Dots', cursive;
     scrollbar-width: none;
 }
 p,h1,h2,h3{
-    margin: 0;
+    
     color: white;
 }
 body{
     height: 100vh;
     width: 100%;
+    background-color: #e2d39a;
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0%;
+    }to{
+        opacity: 100%;
+    }
 }
 @keyframes leftTextPop{
     from{
@@ -34,7 +36,7 @@ body{
 @keyframes rightTextPop{
     from{
         letter-spacing: 50px;
-        transform: translateX(-100vw);
+        transform: translateX(-500vw);
     }to{
         letter-spacing: 0px;
         transform: translateX(0vw);
@@ -76,9 +78,16 @@ body{
     position: relative;
     width: 100%;
     height: 100vh;
+    opacity: 0%;
     background-position: center;
     background-size: cover;
     overflow: hidden;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
 }
 #nothingHere{
     position: absolute;
@@ -105,39 +114,16 @@ body{
 #nothingHere2{
     animation-name: rightTextPop;
     animation-duration: 2s;
-    animation-delay: 1s;
+    animation-delay: 0s;
     animation-fill-mode: backwards;
     animation-iteration-count: 1;
 }
 #nothingHere3{
     animation-name: leftTextPop;
     animation-duration: 2s;
-    animation-delay: 2.8s;
+    animation-delay: 0.7s;
     animation-fill-mode: backwards;
     animation-iteration-count: 1;
-}
-#clickToLeave{
-    position: absolute;
-    top: calc(90% - 100px);
-    left: 5%;
-    width: 300px;
-    height: 100px;
-    background-color: #ffffff;
-    opacity: 0%;
-    border-radius: 2px;
-    font-family: 'Merriweather', serif;
-    font-weight: 200;
-    font-style: italic;
-    animation-name: downFadeTextPop;
-    animation-duration: 0.5s;
-    animation-delay: 4s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-}
-#clickToLeave p{
-    color: #000000;
-    padding: 20px;
 }
 #dontScroll{
     position: absolute;
@@ -150,7 +136,7 @@ body{
     opacity: 0%;
     animation-name: downFadeTextPop;
     animation-duration: 0.5s;
-    animation-delay: 4.2s;
+    animation-delay: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-timing-function: linear;
@@ -181,10 +167,4 @@ body{
     font-style: italic;
     white-space: nowrap;
     transform: translateX(-50px);
-}
-#warningSvg{
-    position: relative;
-    left: 5vh;
-    top: 2vw;
-    height: 80%;
 }
